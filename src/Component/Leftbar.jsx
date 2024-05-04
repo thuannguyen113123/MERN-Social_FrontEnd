@@ -16,7 +16,7 @@ const Leftbar = () => {
 
   const getPost = async () => {
     try {
-      const { data } = await axios.get(`/api/user/follow/${id}`);
+      const { data } = await axios.get(`${baseURL}/api/user/follow/${id}`);
       setPost(data.post);
     } catch (error) {
       console.log(error);
@@ -26,7 +26,7 @@ const Leftbar = () => {
 
   const getNotifications = async () => {
     try {
-      const res = await axios.get(`/api/user/get-notifications`);
+      const res = await axios.get(`${baseURL}/api/user/get-notifications`);
       const data = res.data;
 
       if (data.success) {
@@ -46,7 +46,7 @@ const Leftbar = () => {
   // Hàm gửi yêu cầu xóa thông báo đến server
   const deleteNotificationInDatabase = async (id) => {
     try {
-      const res = await axios.delete(`/api/user/delete-notification/${id}`);
+      const res = await axios.delete(`${baseURL}/api/user/delete-notification/${id}`);
       const data = res.data;
       if (!data.success) {
         console.log(data.massage);
