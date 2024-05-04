@@ -38,7 +38,11 @@ const Follow = ({ userdetails, setRenderUser }) => {
         </Link>
       </div>
       <Button onClick={handleFollow} className="border-none">
-        <FaUserPlus className="w-5 h-5 text-black dark:text-white hover:rotate-10 hover:scale-125" />
+        <FaUserPlus 
+  className="w-5 h-5 text-black dark:text-white hover:rotate-10 hover:scale-125" 
+  color={follow ? "#1877F2" : undefined} 
+/>
+
       </Button>
     </div>
   );
