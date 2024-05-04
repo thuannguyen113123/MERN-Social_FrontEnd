@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { Button } from "flowbite-react";
 import { toast } from "react-toastify";
+import { baseURL } from "../Urls.js";
 
 const ProfileLeftbar = () => {
   //Tham số hai là lấy id
@@ -23,7 +24,7 @@ const ProfileLeftbar = () => {
 
   const getFollowing = async () => {
     try {
-      const { data } = await axios.get(`/api/post/following/${id}`);
+      const { data } = await axios.get(`${baseURL}/api/post/following/${id}`);
       setFollowingUser(data.followingList);
     } catch (error) {
       console.log(error);
@@ -32,7 +33,7 @@ const ProfileLeftbar = () => {
 
   const getUser = async () => {
     try {
-      const { data } = await axios.get(`/api/user/post/user-details/${id}`);
+      const { data } = await axios.get(`${baseURL}/api/user/post/user-details/${id}`);
       setUsers(data.others);
     } catch (error) {
       console.log(error);
@@ -47,11 +48,11 @@ const ProfileLeftbar = () => {
   //Xữ lý theo dõi
   const handleFollow = async () => {
     if (follow === "Theo dõi") {
-      axios.put(`/api/user/following/${id}`, { user: `${user._id}` });
+      axios.put(`${baseURL}/api/user/following/${id}`, { user: `${user._id}` });
       setFollow("Hủy theo dõi");
       toast.success("Hủy Theo dõi thành công");
     } else {
-      await axios.put(`/api/user/following/${id}`, {
+      await axios.put(`${baseURL}/api/user/following/${id}`, {
         user: `${user._id}`,
       });
       setFollow("Theo dõi");
