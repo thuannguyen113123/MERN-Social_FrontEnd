@@ -5,6 +5,7 @@ import ContentPost from "./ContentPost";
 import axios from "axios";
 import { useParams } from "react-router";
 import ProfilePost from "./PofilePost/ProfilePost";
+import { baseURL } from "../Urls.js";
 
 const ProfileMainPost = () => {
   //Tham số hai là lấy id
@@ -13,7 +14,7 @@ const ProfileMainPost = () => {
 
   const getProfilePost = async () => {
     try {
-      const { data } = await axios.get(`/api/post/get-post/${id}`);
+      const { data } = await axios.get(`${baseURL}/api/post/get-post/${id}`);
       console.log(data);
       setPost(data.myPost);
     } catch (error) {
