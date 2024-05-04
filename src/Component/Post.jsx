@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import { Button, TextInput, Modal } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { ShareButton } from "./ShareButton";
+import { baseURL } from "../Urls.js";
 
 const Post = ({ post, setRenderPost }) => {
   const { currentUser } = useSelector((state) => state.user);
@@ -26,7 +27,7 @@ const Post = ({ post, setRenderPost }) => {
   const getUser = async () => {
     try {
       const { data } = await axios.get(
-        `/api/user/post/user-details/${post.user}`
+        `${baseURL}/api/user/post/user-details/${post.user}`
       );
       setUser(data.others);
     } catch (error) {
@@ -59,13 +60,13 @@ const Post = ({ post, setRenderPost }) => {
 
   const handleLike = async () => {
     if (like.type === AiOutlineLike) {
-      await axios.put(`/api/post/${post._id}/like`);
+      await axios.put(`${baseURL}/api/post/${post._id}/like`);
       setLike(
         <TiThumbsUp className="text-[#1877F2] text-[22px] hover:scale-110" />
       );
       setCount(count + 1);
     } else {
-      await axios.put(`/api/post/${post._id}/like`);
+      await axios.put(`${baseURL}/api/post/${post._id}/like`);
       setLike(<AiOutlineLike className="text-[22px] hover:scale-110" />);
       setCount(count - 1);
     }
@@ -79,7 +80,7 @@ const Post = ({ post, setRenderPost }) => {
       profile: `${users?.profilePicture}`,
     };
 
-    await axios.put(`/api/post/comment/post`, comment);
+    await axios.put(`${baseURL}/api/post/comment/post`, comment);
 
     setComments(comments.concat(comment));
     setCommentwriting("");
@@ -91,7 +92,7 @@ const Post = ({ post, setRenderPost }) => {
   const deleteComment = async (postId, commentId) => {
     try {
       const res = await axios.delete(
-        `/api/post/comment/delete/${postId}/${commentId}`
+        `${baseURL}/api/post/comment/delete/${postId}/${commentId}`
       );
       if (res.data.success) {
         // Cập nhật trạng thái bình luận sau khi xóa thành công
@@ -111,7 +112,7 @@ const Post = ({ post, setRenderPost }) => {
   };
 
   const deletePost = async () => {
-    await axios.delete(`/api/post/delete-post/${post._id}`);
+    await axios.delete(`${baseURL}/api/post/delete-post/${post._id}`);
   };
   const handleDeletePost = () => {
     deletePost();
