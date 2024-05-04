@@ -3,6 +3,7 @@ import axios from "axios";
 
 import Follow from "./Follow.jsx";
 import { useSelector } from "react-redux";
+import { baseURL } from "../Urls.js";
 
 const Rightbar = () => {
   const [users, setUsers] = useState([]);
@@ -12,7 +13,7 @@ const Rightbar = () => {
 
   const getUser = async () => {
     try {
-      const { data } = await axios.get(`/api/user/all-user/${id}`);
+      const { data } = await axios.get(`${baseURL}/api/user/all-user/${id}`);
       setUsers(data.filterUser);
     } catch (error) {
       console.log(error);
