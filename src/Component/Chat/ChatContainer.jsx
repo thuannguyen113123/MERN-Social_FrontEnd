@@ -33,10 +33,12 @@ const ChatContainer = ({ currentChatUser }) => {
       socket.current = io(baseURL);
       socket.current.emit("addUser", id);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, currentChatUser]);
 
   useEffect(() => {
     getMessage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentChatUser, id]);
 
   const sendMessage = () => {
