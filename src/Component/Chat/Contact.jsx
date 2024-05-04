@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import ChatContainer from "./ChatContainer";
 import { FaSearch } from "react-icons/fa";
+import { baseURL } from "../Urls.js";
 
 const Contact = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -14,7 +15,7 @@ const Contact = () => {
 
   const getUser = async () => {
     try {
-      const { data } = await axios.get(`/api/post/following/${id}`);
+      const { data } = await axios.get(`${baseURL}/api/post/following/${id}`);
       setUsers(data.followingList);
     } catch (error) {
       //   toast.error("Xảy ra lỗi khi nhận dữ liệu");
