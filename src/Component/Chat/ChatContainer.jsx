@@ -19,7 +19,7 @@ const ChatContainer = ({ currentChatUser }) => {
   const getMessage = async () => {
     try {
       const { data } = await axios.get(
-        `/api/post/get/chat/msg/${id}/${currentChatUser._id}`
+        `${baseURL}/api/post/get/chat/msg/${id}/${currentChatUser._id}`
       );
       setMessage(data.allMessage);
     } catch (error) {
@@ -51,7 +51,7 @@ const ChatContainer = ({ currentChatUser }) => {
       from: id,
       message: inputMessage,
     });
-    axios.post(`/api/post/msg`, {
+    axios.post(`${baseURL}/api/post/msg`, {
       from: id,
       to: currentChatUser._id,
       message: inputMessage,
