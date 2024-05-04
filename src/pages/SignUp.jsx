@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import axios from "axios";
 import OAuth from "../Component/OAuth";
+import { baseURL } from "../Urls.js";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -21,7 +22,7 @@ const SignUp = () => {
     try {
       setLoading(true);
       setErrorMessage(null);
-      const res = await axios.post(`http://localhost:8080/api/auth/register`, {
+      const res = await axios.post(`${baseURL]/api/auth/register`, {
         name,
         email,
         password,
