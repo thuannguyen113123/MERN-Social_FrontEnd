@@ -12,7 +12,7 @@ import { TiThumbsUp } from "react-icons/ti";
 import ProfileImage from "../Images/WIN_20230918_16_20_02_Pro.jpg";
 import { useSelector } from "react-redux";
 import { Button, TextInput } from "flowbite-react";
-import { baseURL } from "../Urls.js";
+import { baseURL } from "../../Urls.js";
 
 const ProfilePost = ({ detail }) => {
   const [comments, setComments] = useState([]);
