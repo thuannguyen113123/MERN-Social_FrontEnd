@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Button } from "flowbite-react";
 import { toast } from "react-toastify";
+import { baseURL } from "../Urls.js";
 
 const Follow = ({ userdetails, setRenderUser }) => {
   const [follow, setFollow] = useState(false);
@@ -12,7 +13,7 @@ const Follow = ({ userdetails, setRenderUser }) => {
 
   const handleFollow = async () => {
     try {
-      await axios.put(`/api/user/following/${userdetails._id}`, {
+      await axios.put(`${baseURL}/api/user/following/${userdetails._id}`, {
         user: currentUser.user._id,
       });
       setFollow((prevFollow) => !prevFollow);
