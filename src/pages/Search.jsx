@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import Header from "./../Component/Header";
 import { useSelector } from "react-redux";
+import { baseURL } from "../Urls.js";
 
 const Search = () => {
   const [users, setUsers] = useState([]);
@@ -19,7 +20,7 @@ const Search = () => {
     const getUsers = async () => {
       setLoading(true);
       const searchQuery = urlParams.toString();
-      const res = await axios.get(`/api/user/get-alluser?${searchQuery}`);
+      const res = await axios.get(`${baseURL}/api/user/get-alluser?${searchQuery}`);
       const data = res.data;
       if (!data.success) {
         setLoading(false);
@@ -46,7 +47,7 @@ const Search = () => {
     urlParams.set("startIndex", startIndex);
     const searchQuery = urlParams.toString();
     const res = await axios.get(
-      `/api/user/get-alluser?searchTerm=${searchQuery}`
+      `${baseURL}/api/user/get-alluser?searchTerm=${searchQuery}`
     );
     const data = res.data;
     if (!data.success) {
