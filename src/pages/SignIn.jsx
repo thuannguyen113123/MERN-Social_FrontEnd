@@ -9,6 +9,7 @@ import {
   signInFailure,
 } from "../redux/user/userSlide.js";
 import OAuth from "./../Component/OAuth";
+import { baseURL } from "../Urls.js";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -29,7 +30,7 @@ const SignIn = () => {
     }
     try {
       dispatch(signInStart());
-      const res = await axios.post(`/api/auth/login`, {
+      const res = await axios.post(`${baseURL}/api/auth/login`, {
         email,
         password,
       });
