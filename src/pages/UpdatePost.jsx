@@ -14,6 +14,7 @@ import { useParams } from "react-router";
 import Header from "./../Component/Header";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+ import { baseURL } from "../Urls.js";
 
 const UpdatePost = () => {
   const filePickerRef = useRef();
@@ -26,7 +27,7 @@ const UpdatePost = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploadError, setUploadError] = useState(null);
   const [post, setPost] = useState({});
-  import { baseURL } from "../Urls.js";
+ 
 
   const navigate = useNavigate();
 
