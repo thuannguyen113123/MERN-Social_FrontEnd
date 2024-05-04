@@ -26,13 +26,14 @@ const UpdatePost = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploadError, setUploadError] = useState(null);
   const [post, setPost] = useState({});
+  import { baseURL } from "../Urls.js";
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await axios.get(`/api/post/getDetailPost/${pId}`);
+        const res = await axios.get(`${baseURL}/api/post/getDetailPost/${pId}`);
         const data = await res.data;
         if (data.success) {
           const { title, image, video } = data.postDetail;
