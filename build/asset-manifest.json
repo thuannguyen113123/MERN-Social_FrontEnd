@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9977567f.css",
+    "main.js": "/static/js/main.d949099d.js",
+    "static/media/WIN_20230918_16_20_02_Pro.jpg": "/static/media/WIN_20230918_16_20_02_Pro.052d7a022a765e5eee15.jpg",
+    "index.html": "/index.html",
+    "main.9977567f.css.map": "/static/css/main.9977567f.css.map",
+    "main.d949099d.js.map": "/static/js/main.d949099d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9977567f.css",
+    "static/js/main.d949099d.js"
+  ]
+}
