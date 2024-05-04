@@ -38,6 +38,7 @@ const ProfilePost = ({ detail }) => {
   };
   useEffect(() => {
     getUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [detail.user]);
   const [like, setLike] = useState(
     detail.like.includes(userId) ? (
