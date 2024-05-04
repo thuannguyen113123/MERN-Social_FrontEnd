@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+ import { baseURL } from "../Urls.js";
 
 const Leftbar = () => {
   const [post, setPost] = useState([]);
