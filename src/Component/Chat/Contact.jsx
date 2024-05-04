@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import ChatContainer from "./ChatContainer";
 import { FaSearch } from "react-icons/fa";
-import { baseURL } from "../Urls.js";
+import { baseURL } from "../../Urls.js";
 
 const Contact = () => {
   const { currentUser } = useSelector((state) => state.user);
