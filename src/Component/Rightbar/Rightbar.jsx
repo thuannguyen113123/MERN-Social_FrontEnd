@@ -3,7 +3,7 @@ import axios from "axios";
 
 import Follow from "./Follow.jsx";
 import { useSelector } from "react-redux";
-import { baseURL } from "../Urls.js";
+import { baseURL } from "../../Urls.js";
 
 const Rightbar = () => {
   const [users, setUsers] = useState([]);
