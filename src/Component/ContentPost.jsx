@@ -14,6 +14,7 @@ import {
 import { useSelector } from "react-redux";
 import { TextInput, Button } from "flowbite-react";
 import { toast } from "react-toastify";
+import { baseURL } from "../Urls.js";
 
 const ContentPost = ({ setRenderPost }) => {
   const { currentUser } = useSelector((state) => state.user);
@@ -69,7 +70,7 @@ const ContentPost = ({ setRenderPost }) => {
           // For instance, get the download URL: https://firebasestorage.googleapis.com/...
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             axios
-              .post(`/api/post/user/post`, {
+              .post(`${baseURL}/api/post/user/post`, {
                 title: title,
                 image: downloadURL,
                 video: "",
@@ -122,7 +123,7 @@ const ContentPost = ({ setRenderPost }) => {
           // For instance, get the download URL: https://firebasestorage.googleapis.com/...
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             axios
-              .post(`/api/post/user/post`, {
+              .post(`${baseURL}/api/post/user/post`, {
                 title: title,
                 video: downloadURL,
                 image: "",
@@ -143,7 +144,7 @@ const ContentPost = ({ setRenderPost }) => {
       );
     } else {
       axios
-        .post(`/api/post/user/post`, {
+        .post(`${baseURL}/api/post/user/post`, {
           title: title,
           video: "",
           image: "",
