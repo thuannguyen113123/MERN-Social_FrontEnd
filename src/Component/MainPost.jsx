@@ -4,6 +4,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import ContentPost from "./ContentPost.jsx";
 import Post from "./Post.jsx";
+import { baseURL } from "../Urls.js";
 
 const MainPost = () => {
   const [post, setPost] = useState([]);
@@ -20,7 +21,7 @@ const MainPost = () => {
 
   const getPost = async () => {
     try {
-      const { data } = await axios.get(`/api/user/follow/${id}`);
+      const { data } = await axios.get(`${baseURL}/api/user/follow/${id}`);
       setPost(data.post);
     } catch (error) {
       console.log(error);
