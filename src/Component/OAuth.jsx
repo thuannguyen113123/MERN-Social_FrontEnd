@@ -9,6 +9,7 @@ import {
 } from "../redux/user/userSlide.js";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { baseURL } from "../Urls.js";
 
 const OAuth = () => {
   const auth = getAuth(app);
@@ -22,7 +23,7 @@ const OAuth = () => {
     try {
       const resultsFromGoogle = await signInWithPopup(auth, provider);
 
-      const res = await axios.post("/api/auth/google", {
+      const res = await axios.post(`${baseURL}/api/auth/google`, {
         name: resultsFromGoogle.user.displayName,
         email: resultsFromGoogle.user.email,
         googlePhotoUrl: resultsFromGoogle.user.photoURL,
