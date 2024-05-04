@@ -12,6 +12,7 @@ import { TiThumbsUp } from "react-icons/ti";
 import ProfileImage from "../Images/WIN_20230918_16_20_02_Pro.jpg";
 import { useSelector } from "react-redux";
 import { Button, TextInput } from "flowbite-react";
+import { baseURL } from "../Urls.js";
 
 const ProfilePost = ({ detail }) => {
   const [comments, setComments] = useState([]);
@@ -28,7 +29,7 @@ const ProfilePost = ({ detail }) => {
   const getUser = async () => {
     try {
       const { data } = await axios.get(
-        `/api/user/post/user-details/${detail.user}`
+        `${baseURL}/api/user/post/user-details/${detail.user}`
       );
       setUser(data.others);
     } catch (error) {
@@ -50,11 +51,11 @@ const ProfilePost = ({ detail }) => {
   const [count, setCount] = useState(detail.like.length);
   const handleLike = async () => {
     if (like.type === AiOutlineLike) {
-      await axios.put(`/api/post/${detail._id}/like`);
+      await axios.put(`${baseURL}/api/post/${detail._id}/like`);
       setLike(<TiThumbsUp className="text-[#1877F2] text-[22px]" />);
       setCount(count + 1);
     } else {
-      await axios.put(`/api/post/${detail._id}/like`);
+      await axios.put(`${baseURL}/api/post/${detail._id}/like`);
       setLike(<AiOutlineLike className="text-[22px]" />);
       setCount(count - 1);
     }
@@ -68,7 +69,7 @@ const ProfilePost = ({ detail }) => {
       profile: `${users?.profilePicture}`,
     };
 
-    await axios.put(`/api/post/comment/post`, comment);
+    await axios.put(`${baseURL}/api/post/comment/post`, comment);
 
     setComments(comments.concat(comment));
     setCommentwriting("");
