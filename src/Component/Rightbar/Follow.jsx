@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Button } from "flowbite-react";
 import { toast } from "react-toastify";
-import { baseURL } from "../Urls.js";
+import { baseURL } from "../../Urls.js";
 
 const Follow = ({ userdetails, setRenderUser }) => {
   const [follow, setFollow] = useState(false);
