@@ -3,6 +3,7 @@ import axios from "axios";
 import Follow from "./Rightbar/Follow.jsx";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { baseURL } from "../Urls.js";
 
 const ProfileRightbar = () => {
   const [followersUser, setFollowersUser] = useState([]);
@@ -17,7 +18,7 @@ const ProfileRightbar = () => {
 
   const getFollowers = async () => {
     try {
-      const { data } = await axios.get(`/api/post/followers/${id}`);
+      const { data } = await axios.get(`${baseURL}/api/post/followers/${id}`);
       setFollowersUser(data.followersList);
     } catch (error) {
       console.log(error);
@@ -30,7 +31,7 @@ const ProfileRightbar = () => {
 
   const getUser = async () => {
     try {
-      const { data } = await axios.get(`/api/user/all-user/${inforSuggest}`);
+      const { data } = await axios.get(`${baseURL}/api/user/all-user/${inforSuggest}`);
       setUsers(data.filterUser);
     } catch (error) {
       console.log(error);
