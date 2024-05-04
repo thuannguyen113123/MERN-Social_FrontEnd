@@ -15,6 +15,7 @@ import { FaMoon, FaSun, FaFacebookMessenger } from "react-icons/fa";
 import { signoutSuccess } from "../redux/user/userSlide.js";
 import { toggleTheme } from "../redux/theme/themeSlice.js";
 import useDebounce from "../hooks/useDebounce.js";
+import { baseURL } from "../Urls.js";
 
 const Header = () => {
   // Tạo này để nó acctive vào cái mình chọn trong toggle
@@ -55,7 +56,7 @@ const Header = () => {
   //Đăng xuất
   const handleSignOut = async () => {
     try {
-      const res = await axios.post("/api/user/signout");
+      const res = await axios.post(`${baseURL}/api/user/signout`);
       const data = await res.data;
       if (!data.success) {
         console.log(data.message);
@@ -77,7 +78,7 @@ const Header = () => {
     const getAllUser = async () => {
       try {
         const res = await axios.get(
-          `/api/user/get-allUser?searchTerm=${encodeURIComponent(
+          `${baseURL}/api/user/get-allUser?searchTerm=${encodeURIComponent(
             debouncedValue
           )}`
         );
@@ -99,7 +100,7 @@ const Header = () => {
 
   const getNotifications = async () => {
     try {
-      const res = await axios.get(`/api/user/get-notifications`);
+      const res = await axios.get(`${baseURL}/api/user/get-notifications`);
       const data = res.data;
 
       if (data.success) {
