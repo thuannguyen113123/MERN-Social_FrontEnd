@@ -63,6 +63,7 @@ const ProfileLeftbar = () => {
     // Khi id thay đổi, gọi lại các hàm để lấy dữ liệu mới
     getUser();
     getFollowing();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]); // Khi id thay đổi
   return (
     <div>
