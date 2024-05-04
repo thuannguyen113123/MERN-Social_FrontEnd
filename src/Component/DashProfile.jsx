@@ -21,6 +21,7 @@ import {
   deleteUserFailure,
   signoutSuccess,
 } from "../redux/user/userSlide";
+import { baseURL } from "../Urls.js";
 
 const DashProfile = () => {
   const { currentUser, error } = useSelector((state) => state.user);
@@ -125,7 +126,7 @@ const DashProfile = () => {
       dispatch(updateStart());
 
       const res = await axios.put(
-        `/api/user/update/${currentUser.user._id}`,
+        `${baseURL}/api/user/update/${currentUser.user._id}`,
         formData
       );
       const data = res.data;
@@ -149,7 +150,7 @@ const DashProfile = () => {
     try {
       dispatch(deleteUserStart());
       const res = await axios.delete(
-        `/api/user/delete/${currentUser.user._id}`
+        `${baseURL}/api/user/delete/${currentUser.user._id}`
       );
       const data = await res.data;
       if (!data.success) {
@@ -165,7 +166,7 @@ const DashProfile = () => {
   //Đăng xuất
   const handleSignOut = async () => {
     try {
-      const res = await axios.post("/api/user/signout");
+      const res = await axios.post(`${baseURL}/api/user/signout`);
       const data = await res.data;
       if (!data.success) {
         console.log(data.message);
