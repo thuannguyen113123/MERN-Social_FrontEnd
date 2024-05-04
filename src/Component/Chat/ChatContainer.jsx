@@ -7,48 +7,38 @@ import { baseURL } from "../../Urls.js";
 
 const ChatContainer = ({ currentChatUser }) => {
   const { currentUser } = useSelector((state) => state.user);
-  let user = currentUser.user;
+  const user = currentUser.user;
+  const id = user._id;
 
-  let id = user._id;
-  const [message, setMessage] = useState();
-  //Lưu nội dung viết tin nhắn
+  const [message, setMessage] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
-
   const srcollRef = useRef();
-
-  const socket = useRef();
-
+  const socket = useRef(null);
   const [arrivalMessage, setArrivalMessage] = useState(null);
+
   const getMessage = async () => {
     try {
       const { data } = await axios.get(
         `/api/post/get/chat/msg/${id}/${currentChatUser._id}`
       );
-      console.log(id);
-      console.log(currentChatUser._id);
       setMessage(data.allMessage);
     } catch (error) {
       console.log(error);
       // toast.error("Xảy ra lỗi khi nhận dữ liệu");
     }
   };
-  console.log(message);
+
   useEffect(() => {
     if (currentChatUser !== "") {
       socket.current = io(baseURL);
       socket.current.emit("addUser", id);
     }
-  }, [id]);
-
-  console.log(socket.current);
-  console.log(socket);
+  }, [id, currentChatUser]);
 
   useEffect(() => {
     getMessage();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentChatUser._id]);
+  }, [currentChatUser, id]);
 
-  //Gữi tin nhắn
   const sendMessage = () => {
     const messages = {
       myself: true,
@@ -64,7 +54,7 @@ const ChatContainer = ({ currentChatUser }) => {
       to: currentChatUser._id,
       message: inputMessage,
     });
-    setMessage(message.concat(messages));
+    setMessage((prevMessages) => [...prevMessages, messages]);
   };
 
   useEffect(() => {
@@ -74,14 +64,13 @@ const ChatContainer = ({ currentChatUser }) => {
   useEffect(() => {
     if (socket.current) {
       socket.current.on("msg-receive", (msg) => {
-        console.log(msg);
         setArrivalMessage({ myself: false, message: msg });
       });
     }
-  }, [arrivalMessage]);
+  }, []);
 
   useEffect(() => {
-    arrivalMessage && setMessage((pre) => [...pre, arrivalMessage]);
+    arrivalMessage && setMessage((prevMessages) => [...prevMessages, arrivalMessage]);
   }, [arrivalMessage]);
 
   const formatMessageTime = (createdAt) => {
@@ -93,10 +82,8 @@ const ChatContainer = ({ currentChatUser }) => {
       messageDate.getMonth() === currentDate.getMonth() &&
       messageDate.getFullYear() === currentDate.getFullYear()
     ) {
-      // Tin nhắn được tạo trong cùng một ngày, chỉ hiển thị thời gian
       return messageDate.toLocaleTimeString();
     } else {
-      // Tin nhắn được tạo vào ngày khác, chỉ hiển thị ngày
       return messageDate.toLocaleDateString();
     }
   };
@@ -148,7 +135,7 @@ const ChatContainer = ({ currentChatUser }) => {
           onClick={sendMessage}
         >
           <AiOutlineSend />
-          Gữi
+          Gửi
         </button>
       </div>
     </div>
